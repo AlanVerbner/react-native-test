@@ -1,6 +1,6 @@
 /**
  * # LoginForm.js
- * 
+ *
  * This class utilizes the ```tcomb-form-native``` library and just
  * sets up the options required for the 3 states of Login, namely
  * Login, Register or Reset Password
@@ -17,7 +17,7 @@ const {
   PropTypes
 } = React;
 
-/** 
+/**
  * States of login display
  */
 const {
@@ -50,25 +50,25 @@ var LoginForm = React.createClass({
    * ## render
    *
    * setup all the fields using the props and default messages
-   * 
+   *
    */
   render() {
 
     let options = {
       auto: 'placeholders',
       fields: {
-        
+
       }
     };
 
     let username = {
-      label: 'Username',
+      label: 'Nombre de Usuario?',
       maxLength: 12,
       editable: !this.props.form.isFetching,
       hasError: this.props.form.fields.usernameHasError,
       error: 'Must have 6-12 characters and/or numbers'
     };
-    
+
     let email = {
       label: 'Email',
       keyboardType: 'email-address',
@@ -128,7 +128,7 @@ var LoginForm = React.createClass({
       options.fields['username'] = username;
       options.fields['password'] = password;
         break;
-        
+
         /**
          * ### Reset password
          * The password reset form has only 1 field
@@ -158,4 +158,3 @@ var LoginForm = React.createClass({
 });
 
 module.exports = LoginForm;
-

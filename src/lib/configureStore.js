@@ -1,40 +1,45 @@
 /**
  * # configureStore.js
- * 
+ *
  * A Redux boilerplate setup
- * 
+ *
  */
 'use strict';
 
 /**
  * ## Imports
- * 
+ *
  * redux functions
  */
-import { createStore, applyMiddleware } from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+  compose
+} from 'redux';
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 /**
-* ## Reducer
-* The reducer contains the 4 reducers from 
-* device, global, auth, profile
-*/
+ * ## Reducer
+ * The reducer contains the 4 reducers from
+ * device, global, auth, profile
+ */
 import reducer from '../reducers';
 
 /**
  * ## creatStoreWithMiddleware
  * Like the name...
- */ 
-const createStoreWithMiddleware = applyMiddleware(
-  thunk
-)(createStore);
+ */
+
+const logger = createLogger();
+const enhancer = applyMiddleware( thunk, logger )
 
 /**
  * ## configureStore
  * @param {Object} the state with for keys:
  * device, global, auth, profile
- * 
- */ 
-export default function configureStore(initialState) {
-  return createStoreWithMiddleware(reducer, initialState);
+ *
+ */
+export default function configureStore( initialState ) {
+  return createStore( reducer, initialState, enhancer );
 };
